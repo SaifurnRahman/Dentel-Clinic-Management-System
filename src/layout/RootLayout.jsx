@@ -1,9 +1,12 @@
 import React from 'react';
+import Navbar from '../Shared/Navbar';
+import { Outlet } from 'react-router-dom';
 
 const RootLayout = () => {
     return (
         <div>
-            <h1 className='text-amber-300'>saifur rahman</h1>
+            <Navbar></Navbar>
+            <Outlet></Outlet>
         </div>
     );
 };
