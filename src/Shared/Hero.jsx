@@ -169,7 +169,7 @@ const Hero = () => {
               <img
                 src={dentistImg}
                 alt="Professional dentist"
-                className="h-[520px] w-[430px] object-cover object-top"
+                className="h-[620px] w-[530px] object-cover object-top"
               />
             </div>
 

@@ -138,6 +138,13 @@ const Navbar = () => {
               ))}
 
               <Link
+      to="/login"
+      onClick={() => setOpen(false)}
+      className="block w-full rounded-xl border border-sky-600 px-5 py-3 text-center font-semibold text-sky-600 transition hover:bg-sky-50"
+    >
+      Login
+    </Link>
+              <Link
                 to="/appointments"
                 onClick={() => setOpen(false)}
                 className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-sky-600 py-3 font-semibold text-white"
