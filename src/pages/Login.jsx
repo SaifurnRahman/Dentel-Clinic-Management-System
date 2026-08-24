@@ -2,14 +2,16 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FaTooth } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import img from "../assets/loginPageImg.png";
 import {
   HiOutlineMail,
   HiOutlineEyeOff,
   HiOutlineEye,
-  HiKey,
+  HiKey
 } from "react-icons/hi";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
 import { useState } from "react";
 
 const Login = () => {
@@ -44,12 +46,13 @@ const Login = () => {
         </motion.div>
 
         {/* Form Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full lg:w-1/2 p-6 sm:p-10 bg-base-100"
-        >
+        <div className="lg:w-1/2 flex flex-col">
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full md:max-w-md self-center px-6 py-4 bg-base-100"
+          >
           {/* Heading */}
           <div className="mb-8 flex flex-col items-center justify-center">
             <motion.div
@@ -159,16 +162,26 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Register */}
-          <div className="divider">OR</div>
-
-          <p className="text-center text-sm">
-            Don't have an account?{" "}
-            <Link to="/register" className="link link-primary font-semibold">
+          {/* Go for Register */}
+          <p className="text-sm md:text-base">
+            Don't have an account?
+            <Link to="/register" className="ml-1 link link-primary font-semibold">
               Create account
             </Link>
           </p>
+          <div className="divider">Or Continue With</div>
+          <div className="flex justify-center gap-x-5 md:gap-x-7 items-center">
+            <button className="btn hover:none cursor-pointer p-5">
+            <FcGoogle size={40} />
+
+            </button>
+            <button className="btn hover:none cursor-pointer p-5">
+
+            <BsFacebook size={38} color="blue" type="button"/>
+            </button>
+          </div>
         </motion.div>
+        </div>
       </div>
     </div>
   );
