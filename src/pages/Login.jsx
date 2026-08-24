@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { FaTooth } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import img from "../assets/Login-page-image.jpg";
+import img from "../assets/loginPageImg.png";
 import {
   HiOutlineMail,
   HiOutlineEyeOff,
@@ -30,16 +30,26 @@ const Login = () => {
       {/* Main Container */}
       <div className="flex items-center justify-between gap-16 w-full max-w-6xl">
         {/* Image Section */}
-        <div className="hidden lg:block lg:w-1/2">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="hidden lg:block lg:w-1/2"
+        >
           <img
             src={img}
             alt="Login"
             className="h-[500px] w-full object-cover rounded-2xl"
           />
-        </div>
+        </motion.div>
 
         {/* Form Section */}
-        <div className="w-full lg:w-1/2 p-6 sm:p-10 bg-base-100">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full lg:w-1/2 p-6 sm:p-10 bg-base-100"
+        >
           {/* Heading */}
           <div className="mb-8 flex flex-col items-center justify-center">
             <motion.div
@@ -158,7 +168,7 @@ const Login = () => {
               Create account
             </Link>
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
