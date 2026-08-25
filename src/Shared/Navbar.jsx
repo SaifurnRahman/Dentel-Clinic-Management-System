@@ -17,6 +17,7 @@ const Navbar = () => {
     { name: "Dentists", path: "/dentists" },
     { name: "Services", path: "/services" },
     { name: "About Us", path: "/about" },
+    { name: "Faq", path: "/faq" },
     { name: "Contact", path: "/contact" },
   ];
 
