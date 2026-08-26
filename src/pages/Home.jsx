@@ -1,11 +1,11 @@
 import React from 'react';
-import Hero from '../Shared/Hero';
+import Hero from "../Shared/Hero";
 
 const Home = () => {
     return (
-        <div>
+      <section>
         <Hero></Hero>
-        </div>
+      </section>
     );
 };
 
