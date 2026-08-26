@@ -28,17 +28,17 @@ const Faq = () => {
           <div key={category.title} className="space-y-1">
             <h2 className="ml-5 text-xl md:text-2xl font-bold text-gray-800">{category.title}</h2>
 
-            {category?.faqs?.map((faq, index) => {
-              const isOpen = openIndex === index;
+            {category?.faqs?.map((faq) => {
+              const isOpen = openIndex === faq?.index;
 
               return (
                 <div
-                  key={index}
+                  key={faq?.index}
                   className="bg-base-100 border border-base-300 rounded-xl overflow-hidden"
                 >
                   {/* Question */}
                   <button
-                    onClick={() => toggleFaq(index)}
+                    onClick={() => toggleFaq(faq?.index)}
                     className="w-full min-h-16 px-6 py-5 flex items-center justify-between text-left cursor-pointer"
                   >
                     <span className="text-base md:text-lg font-semibold">
