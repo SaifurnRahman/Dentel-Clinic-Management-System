@@ -77,7 +77,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-primary font-semibold mb-2">WHO WE ARE</p>
 
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
+          <h2 className="text-[22px] md:text-4xl font-bold text-gray-800">
             Caring for Your Dental Health
           </h2>
 
@@ -102,7 +102,7 @@ const About = () => {
           <div className="text-center mb-12">
             <p className="text-primary font-semibold mb-2">WHY CHOOSE US</p>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
+            <h2 className="text-xl md:text-4xl font-bold text-gray-800">
               Why Choose DentalCare BD?
             </h2>
           </div>
@@ -173,7 +173,7 @@ const About = () => {
           <div>
             <p className="text-primary font-semibold mb-2">OUR DENTAL CARE</p>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
+            <h2 className="text-xl md:text-4xl font-bold text-gray-800">
               Comprehensive Dental Services
             </h2>
 
