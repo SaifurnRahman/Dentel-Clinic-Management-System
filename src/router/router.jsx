@@ -7,6 +7,7 @@ import Faq from "../pages/Faq";
 import About from "../pages/About";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import AddDoctor from "../pages/Dashboard/AddDoctor";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Dashboard,
+      },
+      {
+        path: "addDoctor",
+        Component: AddDoctor,
       },
       // {
       //   path: "doctors",

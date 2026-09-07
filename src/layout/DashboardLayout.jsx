@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import {
   HiOutlineHome,
   HiOutlineUserGroup,
@@ -8,9 +8,11 @@ import {
 } from "react-icons/hi";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
+import { FiUser } from "react-icons/fi";
 
 const navItems = [
   { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome },
+  { name: "Add Doctor", path: "/dashboard/addDoctor", icon: FiUser },
   { name: "Doctors", path: "/dashboard/doctors", icon: HiOutlineUserGroup },
   { name: "Patients", path: "/dashboard/patients", icon: HiOutlineUsers },
   {
@@ -22,15 +24,14 @@ const navItems = [
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation(); // location ডিক্লেয়ার করা হয়েছে
 
-  // close sidebar during change root
   useEffect(() => {
     setSidebarOpen(false);
   }, [location.pathname]);
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
-      {/* Mobile Overlay */}
+    <div className="flex h-screen bg-gradient-to-br from-sky-50 via-white to-cyan-50 overflow-hidden font-sans">
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
@@ -39,20 +40,16 @@ const DashboardLayout = () => {
         />
       )}
 
-      {/* Sidebar */}
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         navItems={navItems}
       />
 
-      {/* Main Area */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
-        {/* Topbar — sticky */}
         <Topbar setSidebarOpen={setSidebarOpen} navItems={navItems} />
 
-        {/* Dashboard Content */}
-        <main className="flex-1 overflow-y-auto p-5 lg:p-8 bg-slate-50">
+        <main className="flex-1 overflow-y-auto p-5 lg:p-8">
           <div className="max-w-7xl mx-auto">
             <Outlet />
           </div>

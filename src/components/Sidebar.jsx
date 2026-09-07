@@ -10,7 +10,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, navItems }) => {
       aria-modal={sidebarOpen}
       aria-label="Side Nav"
       className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200
+          fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-br from-sky-50 via-white to-cyan-50 border-r border-slate-200
           transform transition-transform duration-300 flex flex-col
           lg:static lg:translate-x-0
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
