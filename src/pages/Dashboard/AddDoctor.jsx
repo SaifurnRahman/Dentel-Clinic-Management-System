@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast"; // react-hot-toast ইম্পোর্ট করা হয়েছে
+import toast from "react-hot-toast";
 import {
   FiUser,
   FiMail,
@@ -48,6 +48,7 @@ const AddDoctor = () => {
   }, [imagePreview]);
 
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       setLoading(true);
 
@@ -62,11 +63,16 @@ const AddDoctor = () => {
       if (data.image?.[0]) {
         formData.append("image", data.image[0]);
       }
-
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      // const token = localStorage.getItem("token");
+      // const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const API_URL = "https://dental-clinic-management-system-sql.vercel.app" || "http://localhost:5000";
+      console.log(formData.values);
 
       const response = await fetch(`${API_URL}/api/doctors`, {
         method: "POST",
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
         body: formData,
       });
 
@@ -82,7 +88,7 @@ const AddDoctor = () => {
       reset();
       setImagePreview(null);
 
-      navigate("/dashboard/doctors");
+      // navigate("/dashboard/doctors");
     } catch (error) {
       // Error Toast
       toast.error(error.message || "Something went wrong!");
