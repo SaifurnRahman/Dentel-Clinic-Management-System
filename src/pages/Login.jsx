@@ -13,6 +13,7 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { useState } from "react";
+import { HiOutlineUser } from "react-icons/hi2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -96,6 +97,38 @@ const Login = () => {
                 </p>
               )}
             </div>
+             {/* Role */}
+              <div>
+                <label className="label">
+                  <span className="label-text font-medium">Login As</span>
+                </label>
+
+                <label
+                  className={`input input-bordered flex items-center gap-3 w-full ${
+                    errors.role ? "input-error" : ""
+                  }`}
+                >
+                  <HiOutlineUser size={20} className="text-base-content/50" />
+
+                  <select
+                    className="grow bg-transparent border-none cursor-pointer focus:outline-none -ml-1"
+                    {...register("role", {
+                      required: "Please select your role",
+                    })}
+                    defaultValue="patient"
+                  >
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </label>
+
+                {errors.role && (
+                  <p className="text-error text-sm mt-1">
+                    {errors.role.message}
+                  </p>
+                )}
+              </div>
 
             {/* Password */}
             <div>

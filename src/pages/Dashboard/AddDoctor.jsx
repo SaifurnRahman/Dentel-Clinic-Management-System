@@ -64,7 +64,7 @@ const AddDoctor = () => {
         formData.append("image", data.image[0]);
       }
       // const token = localStorage.getItem("token");
-      // const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      // const API_URL = import.meta.env.VERCEL_URL || "http://localhost:5000";
       const API_URL = "https://dental-clinic-management-system-sql.vercel.app" || "http://localhost:5000";
       console.log(formData.values);
 

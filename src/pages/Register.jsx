@@ -17,26 +17,50 @@ import { FaTooth } from "react-icons/fa6";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const password = watch("password");
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setServerError("");
+
+    try {
+      const API_URL = import.meta.env.VERCEL_URL || "http://localhost:5000";
+      const response = await fetch(`${API_URL}/api/patients/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        navigate("/login");
+      } else {
+        setServerError(result.message || "Registration failed!");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      setServerError("Server connection error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-100 via-white to-cyan-100 flex items-center justify-center p-4">
       <div className="flex items-center justify-between gap-16 w-full max-w-6xl">
         {/* ================= IMAGE ================= */}
-
         <motion.div
           initial={{ opacity: 0, x: -70 }}
           animate={{ opacity: 1, x: 0 }}
@@ -73,11 +97,16 @@ const Register = () => {
               </p>
             </div>
 
-            {/* Form */}
+            {/* Server Error Message */}
+            {serverError && (
+              <div className="alert alert-error text-sm mb-4 py-2 text-white">
+                <span>{serverError}</span>
+              </div>
+            )}
 
+            {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* ================= NAME ================= */}
-
               <div>
                 <label className="label">
                   <span className="label-text font-medium">Full Name</span>
@@ -89,7 +118,6 @@ const Register = () => {
                   }`}
                 >
                   <HiOutlineUser size={20} className="text-base-content/50" />
-
                   <input
                     type="text"
                     placeholder="Enter your name"
@@ -108,7 +136,6 @@ const Register = () => {
               </div>
 
               {/* ================= EMAIL ================= */}
-
               <div>
                 <label className="label">
                   <span className="label-text font-medium">Email</span>
@@ -120,14 +147,12 @@ const Register = () => {
                   }`}
                 >
                   <HiOutlineMail size={20} className="text-base-content/50" />
-
                   <input
                     type="email"
                     placeholder="example@email.com"
                     className="grow"
                     {...register("email", {
                       required: "Email is required",
-
                       pattern: {
                         value: /^\S+@\S+$/i,
                         message: "Enter a valid email",
@@ -144,7 +169,6 @@ const Register = () => {
               </div>
 
               {/* ================= PASSWORD ================= */}
-
               <div>
                 <label className="label">
                   <span className="label-text font-medium">Password</span>
@@ -156,14 +180,12 @@ const Register = () => {
                   }`}
                 >
                   <HiKey size={20} className="text-base-content/50" />
-
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     className="grow"
                     {...register("password", {
                       required: "Password is required",
-
                       minLength: {
                         value: 6,
                         message: "Password must be at least 6 characters",
@@ -192,19 +214,21 @@ const Register = () => {
               </div>
 
               {/* ================= REGISTER BUTTON ================= */}
-
               <button
                 type="submit"
-                className="btn btn-primary w-full mt-3 bg-sky-600 border-0"
+                disabled={loading}
+                className="btn btn-primary w-full mt-3 bg-sky-600 border-0 text-white"
               >
-                Create Account
+                {loading ? (
+                  <span className="loading loading-spinner"></span>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </form>
 
             {/* ================= LOGIN ================= */}
-
-            {/* Go for Register */}
-            <p className="text-sm md:text-base">
+            <p className="text-sm md:text-base mt-4">
               Already have an account?
               <Link
                 to="/login"
