@@ -29,7 +29,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-white to-cyan-100 flex items-center justify-center p-4">
+    <div className="h-full bg-gradient-to-br from-sky-100 via-white to-cyan-100 flex items-center justify-center px-4 py-8">
       {/* Main Container */}
       <div className="flex items-center justify-between gap-16 w-full max-w-6xl">
         {/* Image Section */}
@@ -47,12 +47,12 @@ const Login = () => {
         </motion.div>
 
         {/* Form Section */}
-        <div className="lg:w-1/2 flex flex-col">
+        <div className="w-full lg:w-1/2 flex flex-col">
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full md:max-w-md self-center px-6 py-4 bg-base-100"
+            className="w-full md:max-w-md p-6 md:p-8 bg-base-100 rounded-2xl shadow-xl border border-sky-100"
           >
           {/* Heading */}
           <div className="mb-8 flex flex-col items-center justify-center">

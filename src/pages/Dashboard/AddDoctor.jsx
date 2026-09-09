@@ -11,11 +11,25 @@ import {
   FiUploadCloud,
   FiArrowLeft,
 } from "react-icons/fi";
+import { HiKey, HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { FaStethoscope } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddDoctor = () => {
-  const navigate = useNavigate();
+  const SPECIALIZATIONS = [
+    "General Dentistry",
+    "Orthodontics (Braces)",
+    "Endodontics (Root Canal)",
+    "Periodontics (Gum Care)",
+    "Prosthodontics (Crown & Bridge)",
+    "Pediatric Dentistry (Kids)",
+    "Cosmetic Dentistry (Whitening)",
+    "Oral & Maxillofacial Surgery",
+    "Dental Implantology",
+  ];
 
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -48,7 +62,6 @@ const AddDoctor = () => {
   }, [imagePreview]);
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       setLoading(true);
 
@@ -63,16 +76,11 @@ const AddDoctor = () => {
       if (data.image?.[0]) {
         formData.append("image", data.image[0]);
       }
-      // const token = localStorage.getItem("token");
-      // const API_URL = import.meta.env.VERCEL_URL || "http://localhost:5000";
+
       const API_URL = "https://dental-clinic-management-system-sql.vercel.app" || "http://localhost:5000";
-      console.log(formData.values);
 
       const response = await fetch(`${API_URL}/api/doctors`, {
         method: "POST",
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
         body: formData,
       });
 
@@ -225,15 +233,20 @@ const AddDoctor = () => {
                   </label>
 
                   <label className="input input-bordered flex items-center gap-3">
-                    <FiBriefcase className="text-base-content/50" />
-                    <input
-                      type="text"
-                      placeholder="Orthodontist"
-                      className="grow"
+                    <FaStethoscope className="text-base-content/50" />
+                    <select
+                      className="grow bg-transparent border-none cursor-pointer focus:outline-none -ml-1"
                       {...register("specialization", {
-                        required: "Specialization is required",
+                        required: "Please select specialization",
                       })}
-                    />
+                      defaultValue="patient"
+                    >
+                      {SPECIALIZATIONS?.map((spe) => (
+                        <option key={spe} value={`${spe}`}>
+                          {spe}
+                        </option>
+                      ))}
+                    </select>
                   </label>
 
                   {errors.specialization && (
@@ -305,7 +318,7 @@ const AddDoctor = () => {
                 </div>
 
                 {/* Email */}
-                <div className="form-control md:col-span-2">
+                <div className="form-control">
                   <label className="label">
                     <span className="label-text font-medium">Email</span>
                   </label>
@@ -329,6 +342,54 @@ const AddDoctor = () => {
                   {errors.email && (
                     <p className="mt-1 text-sm text-error">
                       {errors.email.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Password */}
+                <div>
+                  <label className="label">
+                    <span className="label-text font-medium">
+                      Password for Doctor
+                    </span>
+                  </label>
+
+                  <label
+                    className={`input input-bordered flex items-center gap-3 w-full ${
+                      errors.password ? "input-error" : ""
+                    }`}
+                  >
+                    <HiKey size={20} className="text-base-content/50" />
+
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      className="grow"
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 6,
+                          message: "Password must be at least 6 characters",
+                        },
+                      })}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      {showPassword ? (
+                        <HiOutlineEyeOff size={20} />
+                      ) : (
+                        <HiOutlineEye size={20} />
+                      )}
+                    </button>
+                  </label>
+
+                  {errors.password && (
+                    <p className="text-error text-sm mt-1">
+                      {errors.password.message}
                     </p>
                   )}
                 </div>

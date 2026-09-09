@@ -33,7 +33,7 @@ const Register = () => {
     setServerError("");
 
     try {
-      const API_URL = import.meta.env.VERCEL_URL || "http://localhost:5000";
+      const API_URL = "https://dental-clinic-management-system-sql.vercel.app" || "http://localhost:5000";
       const response = await fetch(`${API_URL}/api/patients/register`, {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-white to-cyan-100 flex items-center justify-center p-4">
+    <div className="h-full bg-gradient-to-br from-sky-100 via-white to-cyan-100 flex items-center justify-center px-4 py-8">
       <div className="flex items-center justify-between gap-16 w-full max-w-6xl">
         {/* ================= IMAGE ================= */}
         <motion.div
@@ -75,12 +75,12 @@ const Register = () => {
         </motion.div>
 
         {/* ================= FORM ================= */}
-        <div className="lg:w-1/2 flex flex-col">
+        <div className="w-full lg:w-1/2 flex flex-col">
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full md:max-w-md self-center px-6 py-4 bg-base-100"
+            className="w-full md:max-w-md p-6 md:p-8 bg-base-100 rounded-2xl shadow-xl border border-sky-100"
           >
             {/* Heading */}
             <div className="mb-8 flex flex-col items-center justify-center">
