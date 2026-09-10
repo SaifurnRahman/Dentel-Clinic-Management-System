@@ -4,8 +4,11 @@ const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = "https://dental-clinic-management-sql.vercel.app" || "http://localhost:5000";
+//   const API_URL = "https://dental-clinic-management-sql.vercel.app" || "http://localhost:5000";
+    //  const API_URL = "http://localhost:5000";
 
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
