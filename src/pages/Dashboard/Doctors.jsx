@@ -34,6 +34,32 @@ const Doctors = () => {
     return <div className="text-center p-8 text-lg">Loading doctors...</div>;
   }
 
+
+const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this doctor?")) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/doctors/${id}`, {
+            method: "DELETE",
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to delete doctor");
+        }
+
+        
+        setDoctors(doctors.filter((doctor) => doctor.id !== id));
+        alert("Doctor deleted successfully!");
+    } catch (error) {
+        console.error("Error deleting doctor:", error);
+        alert(error.message);
+    }
+};
+
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-6">Doctors List</h2>
@@ -68,7 +94,7 @@ const Doctors = () => {
                 <button className="bg-amber-500 text-white px-4 py-1.5 rounded text-sm hover:bg-amber-600 transition">
                   Update
                 </button>
-                <button className="bg-red-500 text-white px-4 py-1.5 rounded text-sm hover:bg-red-600 transition">
+                <button onClick={()=> handleDelete(doctor.id)} className="bg-red-500 text-white px-4 py-1.5 rounded text-sm hover:bg-red-600 transition">
                   Delete
                 </button>
               </div>
