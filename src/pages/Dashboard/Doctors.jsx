@@ -8,7 +8,7 @@ const Doctors = () => {
     //  const API_URL = "http://localhost:5000";
 
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-    
+
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -45,7 +45,7 @@ const Doctors = () => {
           {doctors.map((doctor) => (
             <div key={doctor.id} className="bg-white border rounded-lg shadow-md p-4 flex flex-col justify-between">
               <div>
-                {/* স্কিমা অনুযায়ী image_url ব্যবহার করা হয়েছে */}
+                
                 {doctor.image_url && (
                   <img 
                     src={doctor.image_url} 
@@ -63,7 +63,7 @@ const Doctors = () => {
                 )}
               </div>
 
-              {/* Update এবং Delete বাটন (অন্য টিমমেট এগুলো পরে হ্যান্ডেল করবে) */}
+              
               <div className="flex justify-between mt-4 pt-3 border-t">
                 <button className="bg-amber-500 text-white px-4 py-1.5 rounded text-sm hover:bg-amber-600 transition">
                   Update
