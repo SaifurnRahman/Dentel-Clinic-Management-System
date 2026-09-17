@@ -64,20 +64,18 @@ const AddDoctor = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-
       const formData = new FormData();
-
       Object.keys(data).forEach((key) => {
         if (key !== "image") {
           formData.append(key, data[key]);
         }
       });
 
-      if (data.image?.[0]) {
+      if (data?.image?.[0]) {
         formData.append("image", data.image[0]);
       }
-
-      const API_URL = "https://dental-clinic-management-system-sql.vercel.app" || "http://localhost:5000";
+      const API_URL = import.meta.env.VITE_API_URL;
+      console.log(API_URL);
 
       const response = await fetch(`${API_URL}/api/doctors`, {
         method: "POST",
@@ -85,17 +83,17 @@ const AddDoctor = () => {
       });
 
       const result = await response.json();
+      console.log(result);
+      console.log(response);
 
       if (!response.ok) {
         throw new Error(result.message || "Failed to add doctor");
       }
-
       // Success Toast
       toast.success("Doctor added successfully!");
 
       reset();
       setImagePreview(null);
-
       // navigate("/dashboard/doctors");
     } catch (error) {
       // Error Toast

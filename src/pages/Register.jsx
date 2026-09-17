@@ -33,7 +33,7 @@ const Register = () => {
     setServerError("");
 
     try {
-      const API_URL = "https://dental-clinic-management-system-sql.vercel.app" || "http://localhost:5000";
+       const API_URL = import.meta.env.VITE_API_URL;
       const response = await fetch(`${API_URL}/api/patients/register`, {
         method: "POST",
         headers: {
