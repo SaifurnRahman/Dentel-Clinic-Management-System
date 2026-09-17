@@ -41,7 +41,7 @@ const handleDelete = async (id) => {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/api/doctors/${id}`, {
+        const response = await fetch(`${API_URL}/api/doctors/${id}`, {
             method: "DELETE",
         });
 
