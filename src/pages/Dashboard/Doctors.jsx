@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
     //  const API_URL = "http://localhost:5000";
 
@@ -91,7 +94,7 @@ const handleDelete = async (id) => {
 
               
               <div className="flex justify-between mt-4 pt-3 border-t">
-                <button className="bg-amber-500 text-white px-4 py-1.5 rounded text-sm hover:bg-amber-600 transition">
+                <button onClick={()=> navigate(`/dashboard/edit-doctor/${doctor.id}`)} className="bg-amber-500 text-white px-4 py-1.5 rounded text-sm hover:bg-amber-600 transition">
                   Update
                 </button>
                 <button onClick={()=> handleDelete(doctor.id)} className="bg-red-500 text-white px-4 py-1.5 rounded text-sm hover:bg-red-600 transition">
