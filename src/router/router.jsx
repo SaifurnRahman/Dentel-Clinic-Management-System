@@ -10,6 +10,8 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import AddDoctor from "../pages/Dashboard/AddDoctor";
 import Doctors from "../pages/Dashboard/Doctors";
 import EditDoctor from "../pages/Dashboard/EditDoctor";
+import Patients from "../pages/Dashboard/Patients";
+import PatientDetails from "../pages/Dashboard/PatientDetails";
 
 export const router = createBrowserRouter([
   {
@@ -21,24 +23,23 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: '/about',
+        path: "/about",
         Component: About,
       },
       {
-        path: '/faq',
+        path: "/faq",
         Component: Faq,
       },
       {
-        path: '/register',
+        path: "/register",
         Component: Register,
       },
       {
-        path: '/login',
+        path: "/login",
         Component: Login,
       },
     ],
   },
-
 
   // Dashboard Layout
   {
@@ -61,7 +62,28 @@ export const router = createBrowserRouter([
       {
         path: "edit-doctor/:id",
         Component: EditDoctor
-      }
+      },
+      {
+        path: "patients",
+        Component: Patients,
+      },
+      {
+        path: "patientDetails/:id",
+        Component: PatientDetails,
+        loader: async ({ params }) => {
+          console.log(params);
+          try {
+            const res = await fetch(
+              `${import.meta.env.VITE_API_URL}/api/patients/${params.id}`
+            );
+            if (!res.ok) throw new Error("Patient record not found");
+            const data = await res.json();
+            return { data, error: null };
+          } catch (err) {
+            return { data: null, error: err.message };
+          }
+        },
+      },
     ],
   },
 ]);
