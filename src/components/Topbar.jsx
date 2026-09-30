@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 
 const Topbar = ({ setSidebarOpen, navItems }) => {
   const location = useLocation();
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   const getPageTitle = (pathname) => {
     // নির্দিষ্ট বা বড় পাথগুলোকে আগে চেক করতে পাথের দৈর্ঘ্য অনুযায়ী সর্ট করা হয়েছে
@@ -35,10 +35,10 @@ const Topbar = ({ setSidebarOpen, navItems }) => {
         </h2>
       </div>
 
-        <button onClick={logout} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg shrink-0">
+        {/* <button onClick={logout} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg shrink-0">
           <HiOutlineLogout className="text-lg" />
           <span className="hidden sm:inline">Logout</span>
-        </button>
+        </button> */}
     </header>
   );
 };

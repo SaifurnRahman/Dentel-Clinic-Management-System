@@ -10,11 +10,11 @@ import {
 import { FaTooth } from "react-icons/fa6";
 import { HiOutlineLogout } from "react-icons/hi";
 import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
-
   const links = [
     { name: "Home", path: "/" },
     { name: "Dentists", path: "/dentists" },
@@ -24,6 +24,13 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
     { name: "Dashboard", path: "/dashboard" },
   ];
+
+  let filteredLinks;
+    if (!user?.email) {
+      filteredLinks = links.filter((link) => link?.name != "Dashboard");
+    } else {
+      filteredLinks = links;
+    }
 
   return (
     <motion.header
@@ -56,7 +63,7 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden items-center gap-8 lg:flex">
-          {links.map((link) => (
+          {filteredLinks?.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}

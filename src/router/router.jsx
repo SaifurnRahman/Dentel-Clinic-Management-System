@@ -13,6 +13,8 @@ import EditDoctor from "../pages/Dashboard/AdminActions/EditDoctor";
 import Patients from "../pages/Dashboard/AdminActions/Patients";
 import PatientDetails from "../pages/Dashboard/AdminActions/PatientDetails";
 import CreateAdmin from "../pages/Dashboard/AdminActions/CreateAdmin";
+import Appoinments from "../pages/Dashboard/AdminActions/Appoinments";
+import PrivateRoute from "./PrivateRoute ";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +47,11 @@ export const router = createBrowserRouter([
   // Dashboard Layout
   {
     path: "/dashboard",
-    Component: DashboardLayout,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
 
     children: [
       {
@@ -61,12 +67,16 @@ export const router = createBrowserRouter([
         Component: CreateAdmin,
       },
       {
-        path:"doctors",
-        Component: Doctors
+        path: "doctors",
+        Component: Doctors,
       },
       {
         path: "edit-doctor/:id",
-        Component: EditDoctor
+        Component: EditDoctor,
+      },
+      {
+        path: "allAppoinments",
+        Component: Appoinments,
       },
       {
         path: "patients",

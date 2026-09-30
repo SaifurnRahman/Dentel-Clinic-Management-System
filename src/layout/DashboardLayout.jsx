@@ -24,7 +24,7 @@ const DashboardLayout = () => {
       { name: "Create Admin", path: "/dashboard/createAdmin", icon: FiUser, },
       { name: "Doctors", path: "/dashboard/doctors", icon: HiOutlineUserGroup, },
       { name: "Patients", path: "/dashboard/patients", icon: HiOutlineUsers, },
-      { name: "Appointments", path: "/dashboard/appointments", icon: HiOutlineCalendar, },
+      { name: "Appointments", path: "/dashboard/allAppoinments", icon: HiOutlineCalendar, },
     ],
 
     doctor: [
