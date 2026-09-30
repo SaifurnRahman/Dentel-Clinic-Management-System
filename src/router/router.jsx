@@ -71,7 +71,6 @@ export const router = createBrowserRouter([
         path: "patientDetails/:id",
         Component: PatientDetails,
         loader: async ({ params }) => {
-          console.log(params);
           try {
             const res = await fetch(
               `${import.meta.env.VITE_API_URL}/api/patients/${params.id}`

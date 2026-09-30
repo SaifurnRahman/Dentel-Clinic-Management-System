@@ -75,7 +75,6 @@ const AddDoctor = () => {
         formData.append("image", data.image[0]);
       }
       const API_URL = import.meta.env.VITE_API_URL;
-      console.log(API_URL);
 
       const response = await fetch(`${API_URL}/api/doctors`, {
         method: "POST",
@@ -83,8 +82,6 @@ const AddDoctor = () => {
       });
 
       const result = await response.json();
-      console.log(result);
-      console.log(response);
 
       if (!response.ok) {
         throw new Error(result.message || "Failed to add doctor");

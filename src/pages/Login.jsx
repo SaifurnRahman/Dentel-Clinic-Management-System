@@ -17,6 +17,7 @@ import { HiOutlineUser } from "react-icons/hi2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const {
     register,
@@ -24,8 +25,27 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Login Data:", data);
+  const onSubmit = async(data) => {
+    const {email, password} = data;
+      const response = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+      ;
+     const resdata = await response.json();
+     if(resdata){
+      localStorage.setItem("email", resdata.email)
+      localStorage.setItem("name", resdata.name)
+      localStorage.setItem("token", resdata.token)
+      localStorage.setItem("role", resdata.role)
+     }
+     console.log(resdata);
   };
 
   return (
@@ -97,38 +117,6 @@ const Login = () => {
                 </p>
               )}
             </div>
-             {/* Role */}
-              <div>
-                <label className="label">
-                  <span className="label-text font-medium">Login As</span>
-                </label>
-
-                <label
-                  className={`input input-bordered flex items-center gap-3 w-full ${
-                    errors.role ? "input-error" : ""
-                  }`}
-                >
-                  <HiOutlineUser size={20} className="text-base-content/50" />
-
-                  <select
-                    className="grow bg-transparent border-none cursor-pointer focus:outline-none -ml-1"
-                    {...register("role", {
-                      required: "Please select your role",
-                    })}
-                    defaultValue="patient"
-                  >
-                    <option value="patient">Patient</option>
-                    <option value="doctor">Doctor</option>
-                    <option value="admin">Admin</option>
-                  </select>
-                </label>
-
-                {errors.role && (
-                  <p className="text-error text-sm mt-1">
-                    {errors.role.message}
-                  </p>
-                )}
-              </div>
 
             {/* Password */}
             <div>

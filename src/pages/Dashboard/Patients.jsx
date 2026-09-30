@@ -75,7 +75,7 @@ const Patients = () => {
 
   const confirmDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/patients/${id}`, {
+      const response = await fetch(`${API_URL}/api/patients/${id}`, {
         method: "DELETE",
       });
       const data = await response.json();
