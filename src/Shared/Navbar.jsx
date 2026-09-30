@@ -8,9 +8,12 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import { FaTooth } from "react-icons/fa6";
+import { HiOutlineLogout } from "react-icons/hi";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const links = [
     { name: "Home", path: "/" },
@@ -30,7 +33,6 @@ const Navbar = () => {
       className="sticky top-0 z-50 border-b border-sky-100 bg-white/90 backdrop-blur-xl"
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5">
-
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
           <motion.div
@@ -83,13 +85,20 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Link
-            to="/login"
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-sky-50"
-          >
-            <HiOutlineUser />
-            Login
-          </Link>
+          {user ? (
+            <button onClick={logout} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg shrink-0">
+              <HiOutlineLogout className="text-lg" />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-sky-50"
+            >
+              <HiOutlineUser />
+              Login
+            </Link>
+          )}
 
           <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
             <Link

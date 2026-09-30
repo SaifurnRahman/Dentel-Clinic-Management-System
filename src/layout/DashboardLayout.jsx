@@ -1,30 +1,52 @@
 import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { FiUser } from "react-icons/fi";
 import {
+  HiOutlineCalendar,
+  HiOutlineClipboardList,
   HiOutlineHome,
   HiOutlineUserGroup,
   HiOutlineUsers,
-  HiOutlineCalendar,
 } from "react-icons/hi";
+import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
-import { FiUser } from "react-icons/fi";
-
-const navItems = [
-  { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome },
-  { name: "Add Doctor", path: "/dashboard/addDoctor", icon: FiUser },
-  { name: "Doctors", path: "/dashboard/doctors", icon: HiOutlineUserGroup },
-  { name: "Patients", path: "/dashboard/patients", icon: HiOutlineUsers },
-  {
-    name: "Appointments",
-    path: "/dashboard/appointments",
-    icon: HiOutlineCalendar,
-  },
-];
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation(); // location ডিক্লেয়ার করা হয়েছে
+  const userEmail = localStorage.getItem("email");
+  const userRole = localStorage.getItem("role");
+
+  const roleBasedNavItems = {
+    admin: [
+      { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome, },
+      { name: "Add Doctor", path: "/dashboard/addDoctor", icon: FiUser, },
+      { name: "Create Admin", path: "/dashboard/createAdmin", icon: FiUser, },
+      { name: "Doctors", path: "/dashboard/doctors", icon: HiOutlineUserGroup, },
+      { name: "Patients", path: "/dashboard/patients", icon: HiOutlineUsers, },
+      { name: "Appointments", path: "/dashboard/appointments", icon: HiOutlineCalendar, },
+    ],
+
+    doctor: [
+      { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome },
+      { name: "Appointments", path: "/dashboard/appointments", icon: HiOutlineCalendar, },
+      { name: "Patient Records", path: "/dashboard/patients", icon: HiOutlineUsers, },
+      { name: "Treatment History", path: "/dashboard/treatments", icon: HiOutlineClipboardList},
+      { name: "My Profile", path: "/dashboard/profile", icon: FiUser, },
+    ],
+
+    patient: [
+      { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome, },
+      { name: "Book Appointment", path: "/dashboard/bookAppointment", icon: HiOutlineCalendar, },
+      { name: "My Appointments", path: "/dashboard/myAppointments", icon: HiOutlineCalendar, },
+      { name: "Treatment History", path: "/dashboard/treatments", icon: HiOutlineClipboardList, },
+      { name: "My Profile", path: "/dashboard/profile", icon: FiUser, },
+    ],
+  };
+
+  //showing menu based on role
+  const navItems = roleBasedNavItems[userRole] || [];
+  console.log(navItems);
 
   useEffect(() => {
     setSidebarOpen(false);

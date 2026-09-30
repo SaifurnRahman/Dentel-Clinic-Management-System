@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 import { FaTooth } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ import { HiOutlineUser } from "react-icons/hi2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
   const API_URL = import.meta.env.VITE_API_URL;
 
   const {
@@ -39,11 +41,8 @@ const Login = () => {
       })
       ;
      const resdata = await response.json();
-     if(resdata){
-      localStorage.setItem("email", resdata.email)
-      localStorage.setItem("name", resdata.name)
-      localStorage.setItem("token", resdata.token)
-      localStorage.setItem("role", resdata.role)
+     if (response.ok) {
+       login(resdata);
      }
      console.log(resdata);
   };

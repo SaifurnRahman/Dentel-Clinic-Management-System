@@ -1,9 +1,11 @@
 import React from "react";
 import { HiOutlineLogout, HiOutlineMenuAlt2 } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Topbar = ({ setSidebarOpen, navItems }) => {
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   const getPageTitle = (pathname) => {
     // নির্দিষ্ট বা বড় পাথগুলোকে আগে চেক করতে পাথের দৈর্ঘ্য অনুযায়ী সর্ট করা হয়েছে
@@ -33,20 +35,10 @@ const Topbar = ({ setSidebarOpen, navItems }) => {
         </h2>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm shrink-0">
-            DR
-          </div>
-          <p className="hidden sm:block text-sm font-medium text-slate-700 whitespace-nowrap">
-            Dr. Rahman
-          </p>
-        </div>
-        <button className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg shrink-0">
+        <button onClick={logout} className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg shrink-0">
           <HiOutlineLogout className="text-lg" />
           <span className="hidden sm:inline">Logout</span>
         </button>
-      </div>
     </header>
   );
 };

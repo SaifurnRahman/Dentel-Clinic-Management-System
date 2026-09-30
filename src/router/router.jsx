@@ -7,11 +7,12 @@ import Faq from "../pages/Faq";
 import About from "../pages/About";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import AddDoctor from "../pages/Dashboard/AddDoctor";
-import Doctors from "../pages/Dashboard/Doctors";
-import EditDoctor from "../pages/Dashboard/EditDoctor";
-import Patients from "../pages/Dashboard/Patients";
-import PatientDetails from "../pages/Dashboard/PatientDetails";
+import AddDoctor from "../pages/Dashboard/AdminActions/AddDoctor";
+import Doctors from "../pages/Dashboard/AdminActions/Doctors";
+import EditDoctor from "../pages/Dashboard/AdminActions/EditDoctor";
+import Patients from "../pages/Dashboard/AdminActions/Patients";
+import PatientDetails from "../pages/Dashboard/AdminActions/PatientDetails";
+import CreateAdmin from "../pages/Dashboard/AdminActions/CreateAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "addDoctor",
         Component: AddDoctor,
+      },
+      {
+        path: "createAdmin",
+        Component: CreateAdmin,
       },
       {
         path:"doctors",

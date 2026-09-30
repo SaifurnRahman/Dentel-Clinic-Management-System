@@ -1,14 +1,41 @@
-import React from 'react';
+import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 
-const AuthProvider = ({ children }) => {
-  const userInfo = {};
+const getUser = () => {
+  const token = localStorage.getItem("token");
 
-  return (
-    <AuthContext value={userInfo}>
-      {children}
-    </AuthContext>
-  );
+  if (!token) return null;
+
+  return {
+    email: localStorage.getItem("email"),
+    name: localStorage.getItem("name"),
+    role: localStorage.getItem("role"),
+    token,
+  };
+};
+
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(getUser);
+
+  const login = (data) => {
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("name", data.name);
+    localStorage.setItem("role", data.role);
+    localStorage.setItem("token", data.token);
+
+    setUser(data);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+
+    setUser(null);
+  };
+
+  return <AuthContext value={{ user, login, logout }}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
