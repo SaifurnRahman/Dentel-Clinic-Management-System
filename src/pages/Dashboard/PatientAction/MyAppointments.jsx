@@ -51,7 +51,7 @@ const MyAppointments = () => {
         if (response.ok) {
             alert("Payment processed and saved to database successfully!");
             
-            // UI-তে ইনস্ট্যান্ট স্ট্যাটাস "Paid" করে দেওয়া
+           
             setAppointments((prev) =>
                 prev.map((app) =>
                     app.appointment_id === selectedAppointment.appointment_id
