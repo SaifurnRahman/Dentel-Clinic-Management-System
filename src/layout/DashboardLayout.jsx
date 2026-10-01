@@ -37,10 +37,10 @@ const DashboardLayout = () => {
 
     patient: [
       { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome, },
-      { name: "Book Appointment", path: "/dashboard/bookAppointment", icon: HiOutlineCalendar, },
+      { name: "Book Appointment", path: "/dashboard/services", icon: HiOutlineCalendar, },
       { name: "My Appointments", path: "/dashboard/myAppointments", icon: HiOutlineCalendar, },
       { name: "Treatment History", path: "/dashboard/treatments", icon: HiOutlineClipboardList, },
-      { name: "My Profile", path: "/dashboard/profile", icon: FiUser, },
+      { name: "My Profile", path: "/dashboard/myProfile", icon: FiUser, },
     ],
   };
 

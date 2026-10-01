@@ -88,7 +88,7 @@ const Hero = () => {
           >
             <motion.div whileHover={{ y: -4 }} whileTap={{ scale: 0.97 }}>
               <Link
-                to="/appointments"
+                to="/services"
                 className="flex items-center gap-2 rounded-xl bg-sky-600 px-7 py-3.5 font-semibold text-white shadow-xl shadow-sky-200"
               >
                 <HiOutlineCalendarDays className="text-xl" />

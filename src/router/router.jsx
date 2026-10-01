@@ -17,6 +17,7 @@ import Appoinments from "../pages/Dashboard/AdminActions/Appoinments";
 import PrivateRoute from "./PrivateRoute ";
 import Services from "../pages/Services";
 import MyAppointments from "../pages/Dashboard/PatientAction/MyAppointments";
+import MyProfile from "../pages/Dashboard/PatientAction/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
         path: 'myAppointments',
         Component: MyAppointments
 
+      },
+      {
+        path: 'myProfile',
+        Component: MyProfile
       },
       {
         path: "patientDetails/:id",

@@ -109,7 +109,7 @@ const Navbar = () => {
 
           <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
             <Link
-              to="/appointments"
+              to="/services"
               className="flex items-center gap-2 rounded-xl bg-sky-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-200"
             >
               <HiOutlineCalendarDays className="text-lg" />

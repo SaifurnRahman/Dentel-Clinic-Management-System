@@ -34,23 +34,41 @@ const MyAppointments = () => {
         fetchAppointments();
     }, []);
 
-    // স্ট্যাটিক পেমেন্ট হ্যান্ডলার (কোনো ব্যাকএন্ড কল নেই)
-    const handlePaymentSubmit = (e) => {
-        e.preventDefault();
-        
-        // ফ্রন্টএন্ডে পেমেন্ট স্ট্যাটাস "Paid" করে দেওয়া
-        setAppointments((prev) =>
-            prev.map((app) =>
-                app.appointment_id === selectedAppointment.appointment_id
-                    ? { ...app, payment_status: "Paid" }
-                    : app
-            )
-        );
+    
+    const handlePaymentSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`${API_URL}/api/appointments/${selectedAppointment.appointment_id}/pay`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ paymentMethod, transactionId }),
+        });
 
-        alert("Payment processed successfully!");
-        setShowModal(false);
-        setTransactionId("");
-    };
+        if (response.ok) {
+            alert("Payment processed and saved to database successfully!");
+            
+            // UI-তে ইনস্ট্যান্ট স্ট্যাটাস "Paid" করে দেওয়া
+            setAppointments((prev) =>
+                prev.map((app) =>
+                    app.appointment_id === selectedAppointment.appointment_id
+                        ? { ...app, payment_status: "Paid" }
+                        : app
+                )
+            );
+
+            setShowModal(false);
+            setTransactionId("");
+        } else {
+            alert("Payment failed on server!");
+        }
+    } catch (error) {
+        console.error("Payment error:", error);
+    }
+};
 
     const handleCancelAppointment = async (appointmentId) => {
         if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
