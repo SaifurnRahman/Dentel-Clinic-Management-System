@@ -30,7 +30,6 @@ const CreateAdmin = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
-console.log(data);
       const API_URL = import.meta.env.VITE_API_URL;
 
       const response = await fetch(`${API_URL}/api/admins`, {

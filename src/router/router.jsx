@@ -20,12 +20,9 @@ import MyAppointments from "../pages/Dashboard/PatientAction/MyAppointments";
 import MyProfile from "../pages/Dashboard/PatientAction/MyProfile";
 import DoctorsViews from "../pages/DoctorsView";
 import DoctorViewDetails from "../pages/DocotorsViewDetails";
-<<<<<<< Updated upstream
 import TreatmentHistory from "../pages/Dashboard/PatientAction/TreatmentHistory";
-
-=======
 import PetientsAppointments from "../pages/Dashboard/DoctorsActions/PetientsAppointments";
->>>>>>> Stashed changes
+import DoctorTreatments from "../pages/Dashboard/DoctorsActions/DoctorTreatments";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +90,10 @@ export const router = createBrowserRouter([
         Component: Doctors,
       },
       {
+        path: "treatmentsByDoctor",
+        Component: DoctorTreatments,
+      },
+      {
         path: "edit-doctor/:id",
         Component: EditDoctor,
       },
@@ -117,8 +118,8 @@ export const router = createBrowserRouter([
         Component: PetientsAppointments,
       },
       {
-        path: 'treatmentHistory',
-        Component: TreatmentHistory
+        path: "treatmentHistory",
+        Component: TreatmentHistory,
       },
       {
         path: "patientDetails/:id",

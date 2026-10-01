@@ -14,6 +14,7 @@ const Services = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const [selectedDate, setSelectedDate] = useState("");
+  console.log(selectedDate);
   const [slots, setSlots] = useState([]);
 
   const [selectedTime, setSelectedTime] = useState("");
@@ -61,7 +62,6 @@ const Services = () => {
       );
 
       const data = await response.json();
-console.log(data);
       setSlots(data);
       setSelectedTime("");
     } catch (error) {

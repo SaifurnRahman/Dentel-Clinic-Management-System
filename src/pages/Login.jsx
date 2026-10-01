@@ -15,13 +15,12 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HiOutlineUser } from "react-icons/hi2";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.state?.from?.pathname);
   const from = location.state?.from?.pathname || "/";
   const { login } = useAuth();
   const API_URL = import.meta.env.VITE_API_URL;
@@ -49,8 +48,9 @@ const Login = () => {
      if (response.ok) {
        login(resdata);
        navigate(from, { replace: true });
-     }
-     console.log(resdata);
+     }else{
+      toast.error(resdata?.message)
+     };
   };
 
   return (

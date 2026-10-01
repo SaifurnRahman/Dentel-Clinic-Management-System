@@ -7,6 +7,7 @@ const getUser = () => {
   if (!token) return null;
 
   return {
+    id: localStorage.getItem("id"),
     email: localStorage.getItem("email"),
     name: localStorage.getItem("name"),
     role: localStorage.getItem("role"),
@@ -16,7 +17,6 @@ const getUser = () => {
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(getUser);
-  const [doctors, setDoctors] = useState([]);
 
   const login = (data) => {
     localStorage.setItem("id", data.id);
@@ -29,6 +29,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    localStorage.removeItem("id");
     localStorage.removeItem("email");
     localStorage.removeItem("name");
     localStorage.removeItem("role");
@@ -37,7 +38,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  return <AuthContext value={{ user, login, logout , doctors, setDoctors}}>{children}</AuthContext>;
+  return <AuthContext value={{ user, login, logout }}>{children}</AuthContext>;
 };
 
 export default AuthProvider;

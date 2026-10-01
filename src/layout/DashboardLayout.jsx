@@ -30,9 +30,8 @@ const DashboardLayout = () => {
     doctor: [
       { name: "Dashboard", path: "/dashboard", icon: HiOutlineHome },
       { name: "Appointments", path: "/dashboard/patientsAppointments", icon: HiOutlineCalendar, },
-      { name: "Patient Records", path: "/dashboard/patients", icon: HiOutlineUsers, },
-      { name: "Treatment History", path: "/dashboard/mytreatments", icon: HiOutlineClipboardList},
-      { name: "My Profile", path: "/dashboard/profile", icon: FiUser, },
+      { name: "Treatment History", path: "/dashboard/treatmentsByDoctor", icon: HiOutlineClipboardList},
+      //{ name: "My Profile", path: "/dashboard/profile", icon: FiUser, },
     ],
 
     patient: [
@@ -46,7 +45,6 @@ const DashboardLayout = () => {
 
   //showing menu based on role
   const navItems = roleBasedNavItems[userRole] || [];
-  console.log(navItems);
 
   useEffect(() => {
     setSidebarOpen(false);

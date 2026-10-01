@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const petientsAppointments = () => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -13,7 +14,6 @@ const petientsAppointments = () => {
   const [treatmentDetails, setTreatmentDetails] = useState("");
   const [notes, setNotes] = useState("");
   const {user} = useAuth();
-  console.log(user);
 
   const token = user?.token
 
@@ -35,6 +35,7 @@ const petientsAppointments = () => {
       }
 
       setAppointments(data);
+      console.log(data);
     } catch (error) {
       console.error(error);
     } finally {
@@ -75,11 +76,11 @@ const petientsAppointments = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message);
+        toast.error(data.message);
         return;
       }
 
-      alert("Treatment added successfully!");
+      toast.success("Treatment added successfully!");
 
       setSelectedAppointment(null);
       setDiagnosis("");
@@ -89,7 +90,7 @@ const petientsAppointments = () => {
       loadAppointments();
     } catch (error) {
       console.error(error);
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -113,13 +114,13 @@ const petientsAppointments = () => {
       </div>
 
       {/* Appointment List */}
-      {appointments.length === 0 ? (
+      {appointments?.length === 0 ? (
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 text-center">
           <p className="text-gray-500">No appointments found.</p>
         </div>
       ) : (
         <div className="space-y-5">
-          {appointments.map((appointment) => (
+          {appointments?.map((appointment) => (
             <div
               key={appointment.appointment_id}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6"
@@ -130,19 +131,11 @@ const petientsAppointments = () => {
                   <p className="text-sm text-gray-400">Patient</p>
 
                   <h2 className="font-semibold text-lg mt-1">
-                    {appointment.patient_name}
+                    {appointment.patientName}
                   </h2>
 
                   <p className="text-sm text-gray-500">
-                    {appointment.patient_email}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-sm text-gray-400">Phone</p>
-
-                  <p className="font-medium mt-1">
-                    {appointment.patient_phone || "N/A"}
+                    {appointment.patientEmail}
                   </p>
                 </div>
 
@@ -156,7 +149,7 @@ const petientsAppointments = () => {
                   <p className="text-sm text-gray-400">Date & Time</p>
 
                   <p className="font-medium mt-1">
-                    {appointment.appointment_date}
+                    {appointment.appointment_date.split("T")[0]}
                   </p>
 
                   <p className="text-sm text-gray-500">
@@ -176,7 +169,7 @@ const petientsAppointments = () => {
                       appointment.status === "cancelled"
                     }
                     onClick={() => setSelectedAppointment(appointment)}
-                    className="px-4 py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                    className="px-4 py-2 rounded-lg !disabled:bg-sky-600 text-white hover:bg-sky-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
                   >
                     Add Treatment
                   </button>
