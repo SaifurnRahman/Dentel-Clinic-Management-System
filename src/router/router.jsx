@@ -18,6 +18,8 @@ import PrivateRoute from "./PrivateRoute ";
 import Services from "../pages/Services";
 import MyAppointments from "../pages/Dashboard/PatientAction/MyAppointments";
 import MyProfile from "../pages/Dashboard/PatientAction/MyProfile";
+import DoctorsViews from "../pages/DoctorsView";
+import DoctorViewDetails from "../pages/DocotorsViewDetails";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         Component: About,
+      },
+      {
+        path: "/dentists",
+        Component: DoctorsViews,
+      },
+      {
+        path: "/dentists/:id",
+        Component: DoctorViewDetails,
       },
       {
         path: "/services",
@@ -90,9 +100,8 @@ export const router = createBrowserRouter([
         Component: Patients,
       },
       {
-        path: 'myAppointments',
-        Component: MyAppointments
-
+        path: "myAppointments",
+        Component: MyAppointments,
       },
       {
         path: 'myProfile',

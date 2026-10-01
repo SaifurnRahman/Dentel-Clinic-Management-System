@@ -16,6 +16,7 @@ const getUser = () => {
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(getUser);
+  const [doctors, setDoctors] = useState([]);
 
   const login = (data) => {
     localStorage.setItem("email", data.email);
@@ -35,7 +36,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  return <AuthContext value={{ user, login, logout }}>{children}</AuthContext>;
+  return <AuthContext value={{ user, login, logout , doctors, setDoctors}}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
