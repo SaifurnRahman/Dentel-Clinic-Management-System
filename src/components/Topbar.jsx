@@ -8,7 +8,7 @@ const Topbar = ({ setSidebarOpen, navItems }) => {
   // const { user, logout } = useAuth();
 
   const getPageTitle = (pathname) => {
-    // নির্দিষ্ট বা বড় পাথগুলোকে আগে চেক করতে পাথের দৈর্ঘ্য অনুযায়ী সর্ট করা হয়েছে
+   
     const sortedItems = [...(navItems || [])].sort(
       (a, b) => b.path.length - a.path.length
     );
