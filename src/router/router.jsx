@@ -16,6 +16,7 @@ import CreateAdmin from "../pages/Dashboard/AdminActions/CreateAdmin";
 import Appoinments from "../pages/Dashboard/AdminActions/Appoinments";
 import PrivateRoute from "./PrivateRoute ";
 import Services from "../pages/Services";
+import MyAppointments from "../pages/Dashboard/PatientAction/MyAppointments";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,11 @@ export const router = createBrowserRouter([
       {
         path: "patients",
         Component: Patients,
+      },
+      {
+        path: 'myAppointments',
+        Component: MyAppointments
+
       },
       {
         path: "patientDetails/:id",
