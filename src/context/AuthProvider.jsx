@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
   const [doctors, setDoctors] = useState([]);
 
   const login = (data) => {
+    localStorage.setItem("id", data.id);
     localStorage.setItem("email", data.email);
     localStorage.setItem("name", data.name);
     localStorage.setItem("role", data.role);

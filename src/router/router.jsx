@@ -20,8 +20,12 @@ import MyAppointments from "../pages/Dashboard/PatientAction/MyAppointments";
 import MyProfile from "../pages/Dashboard/PatientAction/MyProfile";
 import DoctorsViews from "../pages/DoctorsView";
 import DoctorViewDetails from "../pages/DocotorsViewDetails";
+<<<<<<< Updated upstream
 import TreatmentHistory from "../pages/Dashboard/PatientAction/TreatmentHistory";
 
+=======
+import PetientsAppointments from "../pages/Dashboard/DoctorsActions/PetientsAppointments";
+>>>>>>> Stashed changes
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -105,8 +109,12 @@ export const router = createBrowserRouter([
         Component: MyAppointments,
       },
       {
-        path: 'myProfile',
-        Component: MyProfile
+        path: "myProfile",
+        Component: MyProfile,
+      },
+      {
+        path: "patientsAppointments",
+        Component: PetientsAppointments,
       },
       {
         path: 'treatmentHistory',
