@@ -20,6 +20,7 @@ import MyAppointments from "../pages/Dashboard/PatientAction/MyAppointments";
 import MyProfile from "../pages/Dashboard/PatientAction/MyProfile";
 import DoctorsViews from "../pages/DoctorsView";
 import DoctorViewDetails from "../pages/DocotorsViewDetails";
+import TreatmentHistory from "../pages/Dashboard/PatientAction/TreatmentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
       {
         path: 'myProfile',
         Component: MyProfile
+      },
+      {
+        path: 'treatmentHistory',
+        Component: TreatmentHistory
       },
       {
         path: "patientDetails/:id",
